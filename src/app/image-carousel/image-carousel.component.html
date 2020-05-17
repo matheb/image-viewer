@@ -1,0 +1,41 @@
+<ng-container *ngIf="gallery$ | async as gallery">
+  <div *ngFor="let item of gallery; index as i">
+    <ng-container *ngIf="!(isMobile$| async); else mobile">
+      <lib-ngx-image-zoom
+        [thumbImage]="item.smallImg"
+        [fullImage]="item.largeImg"
+        (click)="open(i)">
+      </lib-ngx-image-zoom>
+    </ng-container>
+
+    <ng-template #mobile>
+      <img [src]="item.smallImg"
+           (click)="open(i)">
+    </ng-template>
+
+  </div>
+
+  <ng-container *ngIf="isOverlayActive | async">
+    <div class="lightbox"
+         (click)="close($event)">
+      <button class="close-button"
+      (click)="close($event)">CLOSE</button>
+
+      <button class="prev-button"
+              (click)="previous()"
+              *ngIf="currentIndex > 0">Previous</button>
+
+      <img [src]="gallery[currentIndex].largeImg">
+
+      <button class="next-button"
+              (click)="next()"
+              *ngIf="currentIndex < gallery.length - 1">Next</button>
+    </div>
+
+  </ng-container>
+</ng-container>
+
+
+
+
+
