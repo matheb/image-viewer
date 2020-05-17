@@ -2,6 +2,7 @@
   <div *ngFor="let item of gallery; index as i">
     <ng-container *ngIf="!(isMobile$| async); else mobile">
       <lib-ngx-image-zoom
+        *ngIf="i === currentIndex"
         [thumbImage]="item.smallImg"
         [fullImage]="item.largeImg"
         (click)="open(i)">
@@ -16,7 +17,8 @@
   </div>
 
   <ng-container *ngIf="isOverlayActive | async">
-    <div class="lightbox"
+    <div class="lightbox fade-in"
+         [ngClass]="closes ? 'fade-out' : ''"
          (click)="close($event)">
       <button class="close-button"
       (click)="close($event)">CLOSE</button>

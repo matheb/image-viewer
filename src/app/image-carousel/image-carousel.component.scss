@@ -1,14 +1,31 @@
+$breakpoint-tablet: 768px;
+$fade-in-timeframe: 1s;
+
 .lightbox {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
   text-align: center;
-  vertical-align: middle;
+
+  @media (max-width: $breakpoint-tablet) {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
 
   img {
     max-height: 100%;
+
+    @media (max-width: $breakpoint-tablet) {
+      max-width: 100%;
+      //height: unset;
+      padding: 50vh 0;
+    }
   }
 
   .close-button {
@@ -30,5 +47,37 @@
 
   .next-button {
     right: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn ease $fade-in-timeframe;
+  -webkit-animation: fadeIn ease $fade-in-timeframe;
+  -moz-animation: fadeIn ease $fade-in-timeframe;
+  -o-animation: fadeIn ease $fade-in-timeframe;
+  -ms-animation: fadeIn ease $fade-in-timeframe;
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut ease $fade-in-timeframe;
+  -webkit-animation: fadeOut ease $fade-in-timeframe;
+  -moz-animation: fadeOut ease $fade-in-timeframe;
+  -o-animation: fadeOut ease $fade-in-timeframe;
+  -ms-animation: fadeOut ease $fade-in-timeframe;
+}
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
   }
 }

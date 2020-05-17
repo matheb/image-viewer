@@ -32,7 +32,7 @@ export class ImageCarouselComponent implements OnInit {
 
   @Input() currentIndex = 0;
 
-  isOverlayActive = new BehaviorSubject(false)
+  isOverlayActive = new BehaviorSubject(false);
 
   constructor() { }
 
@@ -54,7 +54,7 @@ export class ImageCarouselComponent implements OnInit {
 
   close(e: Event) {
     const targetClassname = (e.target as Element).className;
-    if ( targetClassname === 'lightbox' || targetClassname === 'close-button') {
+    if ( targetClassname.includes('lightbox') || targetClassname === 'close-button') {
       this.isOverlayActive.next(false);
     }
   }
